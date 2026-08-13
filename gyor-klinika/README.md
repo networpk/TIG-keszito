@@ -54,7 +54,7 @@ npm run build    # éles build a dist/-be
 
 - **Szövegek.** A jelenlegiek helykitöltők: a szakaszok sorrendje és szerepe a
   döntés, az üzenetek a következő fázisban készülnek.
-- **Képek.** A `public/placeholder-*.svg` fájlok helyére valódi fotók
+- **Képek.** A `src/assets/placeholder-*.svg` fájlok helyére valódi fotók
   (klinika, orvosok), a partnerlogók helyére a tényleges pénztár- és
   biztosítói logók.
 - **Adatok.** Telefonszám, cím, nyitvatartás, orvosnevek, árak, GYIK-válaszok.
