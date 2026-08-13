@@ -1,3 +1,4 @@
+import { placeholders } from "@/assets/placeholders";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 type ImageProps = {
@@ -67,7 +68,7 @@ export const Cta1Defaults: Props = {
   bullets: [],
   buttons: [{ title: "Button", variant: "alternate" }],
   image: {
-    src: "/placeholder-landscape.svg",
+    src: placeholders.landscape,
     alt: "Relume placeholder image",
   },
 };

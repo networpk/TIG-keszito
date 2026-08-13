@@ -1,3 +1,5 @@
+import { placeholders } from "@/assets/placeholders";
+
 type Stat = {
   value: string;
   label: string;
@@ -60,9 +62,9 @@ export const TrustBarDefaults: Props = {
   ],
   logosHeading: "Elfogadott egészségpénztárak és minősítések",
   logos: [
-    { src: "/placeholder-logo.svg", alt: "Partner logó 1" },
-    { src: "/placeholder-logo.svg", alt: "Partner logó 2" },
-    { src: "/placeholder-logo.svg", alt: "Partner logó 3" },
-    { src: "/placeholder-logo.svg", alt: "Partner logó 4" },
+    { src: placeholders.logo, alt: "Partner logó 1" },
+    { src: placeholders.logo, alt: "Partner logó 2" },
+    { src: placeholders.logo, alt: "Partner logó 3" },
+    { src: placeholders.logo, alt: "Partner logó 4" },
   ],
 };

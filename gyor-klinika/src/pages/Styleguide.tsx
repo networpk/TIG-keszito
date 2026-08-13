@@ -1,3 +1,4 @@
+import { placeholders } from "@/assets/placeholders";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -188,7 +189,7 @@ export const Styleguide = () => {
           <Card className="p-6">
             <p className="text-h6 font-bold">Kép sarokkerekítése</p>
             <img
-              src="/placeholder-landscape.svg"
+              src={placeholders.landscape}
               alt="Helykitöltő kép"
               className="mt-4 w-full rounded-image"
             />

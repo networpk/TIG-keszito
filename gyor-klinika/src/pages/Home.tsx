@@ -1,3 +1,4 @@
+import { placeholders } from "@/assets/placeholders";
 import {
   CalendarMonth,
   Call,
@@ -93,7 +94,7 @@ export const Home = () => {
             url: "#vallalatoknak",
           }}
           image={{
-            src: "/placeholder-portrait.svg",
+            src: placeholders.portrait,
             alt: "A klinika rendelője",
           }}
         />
@@ -109,11 +110,11 @@ export const Home = () => {
         ]}
         logosHeading="Elfogadott egészségpénztárak, biztosítók és minősítéseink"
         logos={[
-          { src: "/placeholder-logo.svg", alt: "Partner logó 1" },
-          { src: "/placeholder-logo.svg", alt: "Partner logó 2" },
-          { src: "/placeholder-logo.svg", alt: "Partner logó 3" },
-          { src: "/placeholder-logo.svg", alt: "Partner logó 4" },
-          { src: "/placeholder-logo.svg", alt: "Partner logó 5" },
+          { src: placeholders.logo, alt: "Partner logó 1" },
+          { src: placeholders.logo, alt: "Partner logó 2" },
+          { src: placeholders.logo, alt: "Partner logó 3" },
+          { src: placeholders.logo, alt: "Partner logó 4" },
+          { src: placeholders.logo, alt: "Partner logó 5" },
         ]}
       />
 
@@ -501,12 +502,12 @@ export const Home = () => {
         heading="Egészségpénztárral és biztosítóval is fizethet"
         description="Az alábbi pénztárak és biztosítók kártyáját fogadjuk el. A pénztári egyenleg a helyszínen, a kártya leolvasásával használható fel — az elszámolást mi intézzük."
         logos={[
-          { src: "/placeholder-logo.svg", alt: "Pénztár logó 1" },
-          { src: "/placeholder-logo.svg", alt: "Pénztár logó 2" },
-          { src: "/placeholder-logo.svg", alt: "Pénztár logó 3" },
-          { src: "/placeholder-logo.svg", alt: "Pénztár logó 4" },
-          { src: "/placeholder-logo.svg", alt: "Pénztár logó 5" },
-          { src: "/placeholder-logo.svg", alt: "Pénztár logó 6" },
+          { src: placeholders.logo, alt: "Pénztár logó 1" },
+          { src: placeholders.logo, alt: "Pénztár logó 2" },
+          { src: placeholders.logo, alt: "Pénztár logó 3" },
+          { src: placeholders.logo, alt: "Pénztár logó 4" },
+          { src: placeholders.logo, alt: "Pénztár logó 5" },
+          { src: placeholders.logo, alt: "Pénztár logó 6" },
         ]}
         button={{
           title: "Hogyan használható fel a pénztári egyenleg?",
@@ -533,7 +534,7 @@ export const Home = () => {
             { title: "Céges szolgáltatásaink", variant: "secondary-alt" },
           ]}
           image={{
-            src: "/placeholder-landscape.svg",
+            src: placeholders.landscape,
             alt: "Céges egészségügyi ellátás",
           }}
         />
@@ -579,7 +580,7 @@ export const Home = () => {
           map={{
             url: "#",
             image: {
-              src: "/placeholder-map.svg",
+              src: placeholders.map,
               alt: "A klinika a térképen",
             },
           }}
@@ -640,7 +641,7 @@ export const Home = () => {
           {
             url: "#",
             image: {
-              src: "/placeholder-landscape.svg",
+              src: placeholders.landscape,
               alt: "Cikk borítóképe",
             },
             category: "Megelőzés",
@@ -653,7 +654,7 @@ export const Home = () => {
           {
             url: "#",
             image: {
-              src: "/placeholder-landscape.svg",
+              src: placeholders.landscape,
               alt: "Cikk borítóképe",
             },
             category: "Mozgásszervek",
@@ -666,7 +667,7 @@ export const Home = () => {
           {
             url: "#",
             image: {
-              src: "/placeholder-landscape.svg",
+              src: placeholders.landscape,
               alt: "Cikk borítóképe",
             },
             category: "Labor",
@@ -723,7 +724,7 @@ export const Home = () => {
 };
 
 const doctorImage = {
-  src: "/placeholder-avatar.svg",
+  src: placeholders.avatar,
   alt: "Orvos portréja",
 };
 

@@ -75,3 +75,14 @@ A Relume forrásból átvett fájlokban a következő hibákat javítottam:
   kötötte; most az dönt, hogy az adott blokkhoz gombot vagy linket adtunk.
 - **Pricing 4** címsorba ágyazott címsort renderelt (`<h4>` a `<h1>`-en belül).
 - **Accordion** primitív a `className` propot elnyelte.
+
+## Egyfájlos, megosztható változat
+
+```
+npm run build && node tools/build-artifact.mjs
+```
+
+A `dist/foooldal.html` egyetlen fájl: a CSS, a JS és a képek is bele vannak
+ágyazva, így hálózat nélkül, dupla kattintással is megnyílik, és megosztható
+oldalként publikálható. A helykitöltő képek ezért `src/assets/`-ből importálva
+vannak (data URI-ként ágyazódnak be), nem a `public/` mappából hivatkozva.

@@ -1,3 +1,4 @@
+import { placeholders } from "@/assets/placeholders";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 type ImageProps = {
@@ -69,7 +70,7 @@ export const Header1Defaults: Props = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
   buttons: [{ title: "Button" }, { title: "Button", variant: "secondary" }],
   image: {
-    src: "/placeholder-portrait.svg",
+    src: placeholders.portrait,
     alt: "Relume placeholder image",
   },
 };

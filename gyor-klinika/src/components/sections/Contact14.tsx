@@ -1,3 +1,4 @@
+import { placeholders } from "@/assets/placeholders";
 import React from "react";
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { Call, LocationOn, Mail, Schedule } from "relume-icons";
@@ -119,7 +120,7 @@ export const Contact14Defaults: Props = {
   map: {
     url: "#",
     image: {
-      src: "/placeholder-map.svg",
+      src: placeholders.map,
       alt: "Térkép helye",
     },
   },
