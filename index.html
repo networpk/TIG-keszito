@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teljesítési igazolás készítő</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6.5' y='3.5' width='19' height='25' rx='2.5' fill='none' stroke='%234B2E83' stroke-width='2'/%3E%3Cpath d='M11 10h10M11 14h10M11 18h6' stroke='%234B2E83' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect x="6.5" y="3.5" width="19" height="25" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M11 10h10M11 14h10M11 18h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M10.5 24.5c2.6-3.4 4.2-3.6 5 -.6.7 2.6 2.4 2 3.4-.5.7-1.7 1.7-1.6 2.6.3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <div class="brand-text">
+      <h1>Teljesítési igazolás</h1>
+      <p>Számlából, egy lépésben</p>
+    </div>
+  </div>
+
+  <div class="topbar-actions">
+    <span id="status" class="status" role="status" aria-live="polite"></span>
+    <label class="btn btn-ghost" for="invoice-input">Számla betöltése</label>
+    <input id="invoice-input" type="file" accept="application/pdf,.pdf" hidden>
+    <button id="download" class="btn btn-primary" type="button" disabled>Igazolás letöltése</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="pane pane-form" aria-label="Adatok">
+
+    <div id="dropzone" class="dropzone">
+      <svg class="dropzone-art" viewBox="0 0 120 96" aria-hidden="true">
+        <rect x="14" y="8" width="62" height="80" rx="4" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <path d="M26 26h38M26 36h38M26 46h26" stroke="var(--line-strong)" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="44" y="18" width="62" height="70" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+        <path d="M56 34h38M56 44h38M56 54h24" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+        <path d="M55 76c5-6.5 8-7 9.6-1.2 1.3 5 4.6 3.9 6.5-1 1.4-3.3 3.3-3 5 .6" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <h2>Húzd ide a számla PDF-jét</h2>
+      <p>Az adatok kitöltődnek, a teljesítés dátuma az előző hónap utolsó napja lesz, te pedig átnézheted mindet a letöltés előtt.</p>
+      <div class="dropzone-actions">
+        <label class="btn btn-primary" for="invoice-input">Számla kiválasztása</label>
+        <button id="start-blank" class="btn btn-ghost" type="button">Kitöltés kézzel</button>
+      </div>
+    </div>
+
+    <form id="form" class="form" hidden>
+
+      <fieldset class="group">
+        <legend>Megrendelő</legend>
+        <p id="client-hint" class="hint" hidden></p>
+        <div class="fields">
+          <label class="field field-wide">
+            <span>Név</span>
+            <input name="clientName" type="text" autocomplete="off">
+          </label>
+          <label class="field field-wide">
+            <span>Székhely</span>
+            <input name="clientAddress" type="text" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Cégjegyzékszám</span>
+            <input name="clientReg" type="text" class="mono" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Adószám</span>
+            <input name="clientTax" type="text" class="mono" autocomplete="off">
+          </label>
+          <label class="field field-wide">
+            <span>Képviselő</span>
+            <input name="clientRep" type="text" autocomplete="off">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Vállalkozó</legend>
+        <p class="hint">Ezek az adatok mentődnek, és minden következő igazoláson automatikusan megjelennek.</p>
+        <div class="fields">
+          <label class="field field-wide">
+            <span>Név</span>
+            <input name="providerName" type="text" autocomplete="off">
+          </label>
+          <label class="field field-wide">
+            <span>Székhely</span>
+            <input name="providerAddress" type="text" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Nyilvántartási szám</span>
+            <input name="providerReg" type="text" class="mono" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Adószám</span>
+            <input name="providerTax" type="text" class="mono" autocomplete="off">
+          </label>
+          <label class="field field-wide">
+            <span>Képviselő</span>
+            <input name="providerRep" type="text" autocomplete="off">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Teljesítés</legend>
+        <div class="fields">
+          <label class="field">
+            <span>Számla kelte</span>
+            <input name="issueDate" type="date" class="mono">
+          </label>
+          <label class="field">
+            <span>Számla sorszáma</span>
+            <input name="invoiceNumber" type="text" class="mono" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Teljesítés dátuma</span>
+            <input name="completionDate" type="date" class="mono">
+          </label>
+          <label class="field">
+            <span>Teljesítés időszaka</span>
+            <input name="period" type="text" class="mono" placeholder="2026.06" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Dokumentum kelte</span>
+            <input name="documentDate" type="date" class="mono">
+          </label>
+          <label class="field">
+            <span>Pénznem</span>
+            <input name="currency" type="text" class="mono" maxlength="4" autocomplete="off">
+          </label>
+        </div>
+        <p id="date-note" class="note"></p>
+        <div class="switches">
+          <label class="switch">
+            <input name="showInvoiceNumber" type="checkbox" checked>
+            <span>Számla sorszáma szerepeljen az igazoláson</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Aláírás</legend>
+        <p class="hint">Csak ebben a böngészőben tárolódik. Nem kerül fel sehova, és nem hagyja el a géped.</p>
+        <div class="signature">
+          <div id="signature-preview" class="signature-preview">
+            <p class="signature-empty">Még nincs betöltve aláírás</p>
+          </div>
+          <div class="signature-actions">
+            <label class="btn btn-ghost" for="signature-input">Aláírás betöltése</label>
+            <input id="signature-input" type="file" accept="image/*" hidden>
+            <button id="signature-clear" class="btn btn-quiet" type="button" hidden>Eltávolítás</button>
+          </div>
+        </div>
+        <p id="signature-note" class="note">Tölts be egy fényképet vagy szkennelt képet az aláírásodról — a hátteret automatikusan eltávolítom.</p>
+        <div class="switches">
+          <label class="switch">
+            <input name="showSignature" type="checkbox" checked>
+            <span>Aláírás rákerüljön a dokumentumra</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Tételek</legend>
+        <div id="items" class="items"></div>
+        <div class="items-footer">
+          <button id="add-item" class="btn btn-quiet" type="button">Tétel hozzáadása</button>
+          <div class="items-total">
+            <span>Tételek összesen</span>
+            <strong id="items-sum" class="mono">0</strong>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>Számlázott összeg</legend>
+        <div class="fields">
+          <label class="field">
+            <span>Jelen időszakra számlázott összeg</span>
+            <input name="amount" type="text" inputmode="decimal" class="mono">
+          </label>
+        </div>
+        <p id="amount-note" class="note"></p>
+      </fieldset>
+
+      <details class="group group-details">
+        <summary>Hivatkozás a szerződésre</summary>
+        <div class="fields">
+          <label class="field field-wide">
+            <span>Angol szöveg</span>
+            <textarea name="contractEn" rows="3"></textarea>
+          </label>
+          <label class="field field-wide">
+            <span>Magyar szöveg</span>
+            <textarea name="contractHu" rows="3"></textarea>
+          </label>
+        </div>
+      </details>
+
+    </form>
+  </section>
+
+  <section class="pane pane-preview" aria-label="Előnézet">
+    <div class="preview-head">
+      <h2>Előnézet</h2>
+      <span id="preview-meta" class="preview-meta mono"></span>
+    </div>
+    <div id="preview" class="preview">
+      <p class="preview-empty">Tölts be egy számlát, és itt azonnal látod a kész igazolást.</p>
+    </div>
+  </section>
+</main>
+
+<script src="vendor/pdf.worker.min.js"></script>
+<script src="vendor/pdf.min.js"></script>
+<script src="vendor/pdf-lib.min.js"></script>
+<script src="vendor/fontkit.umd.min.js"></script>
+<script src="assets/embedded.js"></script>
+<script src="js/signature.js"></script>
+<script src="js/invoice-parser.js"></script>
+<script src="js/certificate.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

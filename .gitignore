@@ -1,0 +1,3 @@
+# Never commit a signature: it is loaded in the browser and stays there.
+tools/source/signature*.png
+tools/source/*.subset.ttf
