@@ -51,7 +51,7 @@ export const Navbar1 = (props: Navbar1Props) => {
     <section className="sticky top-0 z-[999] flex w-full items-center border-b border-scheme-border bg-scheme-background lg:min-h-18 lg:px-[5%]">
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          <a href={logo.url} className="text-h6 font-bold">
+          <a href={logo.url} className="text-h6 font-bold whitespace-nowrap">
             {logo.src ? <img src={logo.src} alt={logo.alt} /> : logo.alt}
           </a>
           <button
@@ -99,7 +99,7 @@ export const Navbar1 = (props: Navbar1Props) => {
               <a
                 key={index}
                 href={navLink.url}
-                className="block py-3 text-base first:pt-7 lg:px-4 lg:py-2 first:lg:pt-2"
+                className="block py-3 text-base whitespace-nowrap first:pt-7 lg:px-4 lg:py-2 first:lg:pt-2"
               >
                 {navLink.title}
               </a>
@@ -137,7 +137,7 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
     >
       <p
         role="button"
-        className="flex w-full items-center justify-between gap-2 py-3 text-left text-base lg:flex-none lg:justify-start lg:px-4 lg:py-2"
+        className="flex w-full items-center justify-between gap-2 py-3 text-left text-base whitespace-nowrap lg:flex-none lg:justify-start lg:px-4 lg:py-2"
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         <span>{navLink.title}</span>

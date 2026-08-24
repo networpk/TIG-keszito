@@ -55,4 +55,20 @@
   body {
     @apply bg-scheme-background font-sans text-regular text-scheme-text antialiased;
   }
+
+  /*
+    A magyar összetett szavak („egészségpénztári", „egészségközpont") h1
+    méretben szélesebbek, mint egy 390 pixeles képernyő szövegoszlopa. Az
+    elválasztás — és végső esetben a szótörés — nélkül ezek kilógnak, és
+    vízszintes görgetést okoznak az egész oldalon.
+  */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
 }

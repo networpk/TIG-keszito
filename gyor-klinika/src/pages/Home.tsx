@@ -539,7 +539,7 @@ export const Home = () => {
               icon: <LocationOn className="size-8 text-scheme-text" />,
               title: "Cím és megközelítés",
               description:
-                "9021 Győr, Minta utca 1.\nSaját parkoló a hátsó bejáratnál, buszmegálló 200 méterre.",
+                "9021 Győr, Bajcsy-Zsilinszky utca 30–32.\nSaját parkoló a hátsó bejáratnál, buszmegálló 200 méterre.",
               button: {
                 title: "Útvonaltervezés",
                 variant: "link",
@@ -556,13 +556,13 @@ export const Home = () => {
             {
               icon: <Schedule className="size-8 text-scheme-text" />,
               title: "Nyitvatartás",
-              description: "H–P: 7:00–19:00\nSzombat: 8:00–14:00\nVasárnap: zárva",
+              description: "Hétfő–csütörtök: 7:00–19:00\nPéntek: 7:00–16:00\nHétvégén zárva",
             },
             {
               icon: <Mail className="size-8 text-scheme-text" />,
               title: "E-mail",
               description: "Írásos megkeresésekre egy munkanapon belül válaszolunk.",
-              link: { label: "info@klinika.hu", url: "mailto:info@klinika.hu" },
+              link: { label: "gyor@hungariamed.hu", url: "mailto:gyor@hungariamed.hu" },
             },
           ]}
           map={{

@@ -5,7 +5,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-3 rounded-button whitespace-nowrap transition-all duration-200 ease-in-out focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  // A Relume alapértelmezése `whitespace-nowrap`; a hosszabb magyar feliratok
+  // ettől kilógtak a 390 pixeles képernyőről, ezért itt törhet a szöveg.
+  "inline-flex items-center justify-center gap-3 rounded-button text-center transition-all duration-200 ease-in-out focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {

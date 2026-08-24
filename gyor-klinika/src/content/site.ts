@@ -1,32 +1,50 @@
 import { placeholders } from "@/assets/placeholders";
 
 /*
-  Oldalak közötti közös tartalom: ami a főoldalon és minden vizsgálat-aloldalon
-  ugyanaz. Egy helyen szerkesztve mindenhol frissül.
+  Oldalak közötti közös tartalom: ami minden oldalon ugyanaz. Egy helyen
+  szerkesztve mindenhol frissül.
+
+  A menü- és lábléchivatkozások `#/útvonal` alakúak, a horgonyok `#/útvonal#id`
+  formában — így egy aloldalról is a megfelelő oldal megfelelő szakaszára
+  visznek.
+
+  Az elérhetőségi adatok a jelenlegi oldal nyilvános kapcsolati aloldaláról
+  származnak.
 */
 
-export const PHONE_LABEL = "+36 96 000 000";
-export const PHONE_NUMBER = "+3696000000";
+export const PHONE_LABEL = "+36 20 373 3343";
+export const PHONE_NUMBER = "+36203733343";
 export const BOOKING_URL = "#idopontfoglalas";
 
 export const navLinks = [
   {
     title: "Szakrendelések",
-    url: "#/#szakrendelesek",
+    url: "#/szolgaltatasok",
     subMenuLinks: [
-      { title: "Nőgyógyászat és családtervezés", url: "#/#szakrendelesek" },
-      { title: "Mozgásszervek", url: "#/#szakrendelesek" },
-      { title: "Szív- és érrendszer", url: "#/#szakrendelesek" },
-      { title: "Szemészet, fül-orr-gégészet", url: "#/#szakrendelesek" },
-      { title: "Belgyógyászati szakterületek", url: "#/#szakrendelesek" },
-      { title: "Mentális egészség és gyermekellátás", url: "#/#szakrendelesek" },
+      { title: "Összes szakrendelés", url: "#/szolgaltatasok" },
+      { title: "Nőgyógyászat és családtervezés", url: "#/szolgaltatasok#katalogus" },
+      { title: "Mozgásszervek", url: "#/szolgaltatasok#katalogus" },
+      { title: "Szív- és érrendszer", url: "#/szolgaltatasok#katalogus" },
+      { title: "Szemészet, fül-orr-gégészet", url: "#/szolgaltatasok#katalogus" },
+      { title: "Belgyógyászati szakterületek", url: "#/szolgaltatasok#katalogus" },
+      { title: "Mentális egészség és gyermekellátás", url: "#/szolgaltatasok#katalogus" },
     ],
   },
-  { title: "Szűrőprogramok", url: "#/#szuroprogramok" },
-  { title: "Vállalatoknak", url: "#/#vallalatoknak" },
-  { title: "Orvosaink", url: "#/#orvosaink" },
-  { title: "Árak", url: "#/#arak" },
-  { title: "Kapcsolat", url: "#/#kapcsolat" },
+  { title: "Szűrőprogramok", url: "#/szolgaltatasok#szuroprogramok" },
+  { title: "Vállalatoknak", url: "#/halozat#vallalatoknak" },
+  {
+    title: "A klinikáról",
+    url: "#/rolunk",
+    subMenuLinks: [
+      { title: "Rólunk", url: "#/rolunk" },
+      { title: "Orvosaink", url: "#/rolunk#orvosaink" },
+      { title: "Galéria", url: "#/galeria" },
+      { title: "Országos hálózat", url: "#/halozat" },
+      { title: "Egészségpénztárak", url: "#/egeszsegpenztarak" },
+    ],
+  },
+  { title: "Árak", url: "#/arak" },
+  { title: "Kapcsolat", url: "#/kapcsolat" },
 ];
 
 export const doctorImage = {
@@ -73,58 +91,55 @@ export const footerColumns = [
   {
     title: "Szakrendelések",
     links: [
-      { title: "Nőgyógyászat", url: "#" },
-      { title: "Ortopédia", url: "#" },
-      { title: "Kardiológia", url: "#" },
-      { title: "Belgyógyászat", url: "#" },
-      { title: "Bőrgyógyászat", url: "#" },
-    ],
-  },
-  {
-    title: "További szakterületek",
-    links: [
-      { title: "Szemészet", url: "#" },
-      { title: "Fül-orr-gégészet", url: "#" },
-      { title: "Urológia", url: "#" },
-      { title: "Endokrinológia", url: "#" },
-      { title: "Gyermekgyógyászat", url: "#" },
+      { title: "Összes szakrendelés", url: "#/szolgaltatasok" },
+      { title: "Nőgyógyászat", url: "#/szolgaltatasok" },
+      { title: "Ortopédia", url: "#/szolgaltatasok" },
+      { title: "Kardiológia", url: "#/szolgaltatasok" },
+      { title: "Bőrgyógyászat", url: "#/szolgaltatasok" },
     ],
   },
   {
     title: "Diagnosztika",
     links: [
-      { title: "Labor", url: "#" },
-      { title: "Ultrahang", url: "#" },
-      { title: "Röntgen", url: "#" },
+      { title: "Labor", url: "#/szolgaltatasok" },
+      { title: "Ultrahang", url: "#/szolgaltatasok" },
+      { title: "Röntgen", url: "#/szolgaltatasok" },
       { title: "Terheléses EKG", url: "#/vizsgalat" },
-      { title: "Gyógytorna", url: "#" },
+      { title: "Gyógytorna", url: "#/szolgaltatasok" },
     ],
   },
   {
     title: "Szűrőprogramok",
     links: [
-      { title: "Alap szűrés", url: "#" },
-      { title: "Menedzserszűrés", url: "#" },
-      { title: "Céges szűrés", url: "#" },
-      { title: "Onkológiai szűrés", url: "#" },
+      { title: "Alap szűrés", url: "#/szolgaltatasok#szuroprogramok" },
+      { title: "Menedzserszűrés", url: "#/szolgaltatasok#szuroprogramok" },
+      { title: "Céges szűrés", url: "#/szolgaltatasok#szuroprogramok" },
     ],
   },
   {
     title: "Vállalatoknak",
     links: [
-      { title: "Üzemorvosi ellátás", url: "#" },
-      { title: "Céges csomagok", url: "#" },
-      { title: "Ajánlatkérés", url: "#" },
+      { title: "Üzemorvosi ellátás", url: "#/halozat#vallalatoknak" },
+      { title: "Országos hálózat", url: "#/halozat" },
+      { title: "Ajánlatkérés", url: "#/kapcsolat" },
     ],
   },
   {
     title: "A klinikáról",
     links: [
-      { title: "Orvosaink", url: "#/#orvosaink" },
-      { title: "Árak", url: "#/#arak" },
-      { title: "Egészségpénztárak", url: "#" },
-      { title: "Egészségmagazin", url: "#" },
-      { title: "Kapcsolat", url: "#/#kapcsolat" },
+      { title: "Rólunk", url: "#/rolunk" },
+      { title: "Orvosaink", url: "#/rolunk#orvosaink" },
+      { title: "Galéria", url: "#/galeria" },
+      { title: "Karrier", url: "#/rolunk" },
+    ],
+  },
+  {
+    title: "Ügyintézés",
+    links: [
+      { title: "Árak", url: "#/arak" },
+      { title: "Egészségpénztárak", url: "#/egeszsegpenztarak" },
+      { title: "Kapcsolat", url: "#/kapcsolat" },
+      { title: "Időpontfoglalás", url: "#idopontfoglalas" },
     ],
   },
 ];

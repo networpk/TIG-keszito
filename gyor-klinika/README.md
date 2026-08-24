@@ -1,6 +1,7 @@
-# Győri magánklinika – főoldal és vizsgálat-aloldal (Relume)
+# Győri magánklinika – oldalstruktúrák (Relume)
 
-A főoldal-struktúraterv 18 szakasza és a vizsgálat-aloldal sablonjának 14 szakasza megépítve, Relume React komponensekből, saját
+A klinika teljes oldalszerkezete megépítve: főoldal (18 szakasz),
+vizsgálat-aloldal sablon (14 szakasz) és hét további aloldal, saját
 styleguide-dal. React + Vite + Tailwind, a komponensek shadcn-módra a projektbe
 másolva (`src/components/ui`, `src/components/sections`) — nincs
 `@relume_io/relume-ui` futásidejű függőség, minden fájl szerkeszthető.
@@ -11,8 +12,12 @@ npm run dev      # fejlesztői szerver
 npm run build    # éles build a dist/-be
 ```
 
+- Oldalak áttekintése: `/#/oldalak`
 - Főoldal: `/`
+- Szolgáltatások gyűjtőoldal: `/#/szolgaltatasok`
 - Vizsgálat-aloldal (sablon): `/#/vizsgalat`
+- Rólunk: `/#/rolunk` · Galéria: `/#/galeria` · Országos hálózat: `/#/halozat`
+- Egészségpénztárak: `/#/egeszsegpenztarak` · Árak: `/#/arak` · Kapcsolat: `/#/kapcsolat`
 - Styleguide: `/#/styleguide`
 
 ## Szakasz → Relume komponens
@@ -71,6 +76,34 @@ Szolgáltatástípusonként a sablon két ponton vált hangsúlyt: a `ctaKind: "
 a vállalati szolgáltatásoknál ajánlatkérésre váltja a foglalást, a `preparation`
 pedig elhagyható ott, ahol nincs teendő a vizsgálat előtt.
 
+## További aloldalak
+
+Mind a hét oldal ugyanazt a keretet kapja (`PageShell`: sticky fejléc,
+breadcrumb, lábléc, mobil cselekvési sáv), és a meglévő komponenskészletből
+épül. Ahol nem volt megfelelő Relume minta, egyedi komponens készült.
+
+| Oldal | Szakaszok | Egyedi komponens |
+|-------|-----------|------------------|
+| **Rólunk** (`#/rolunk`) | hero → számok → történet → értékek → mérföldkövek → orvosok → vélemények → karrier → CTA | – |
+| **Galéria** (`#/galeria`) | hero → szűrhető képrács → gyakorlati tudnivalók → CTA | `GalleryGrid` |
+| **Szolgáltatások** (`#/szolgaltatasok`) | hero → teljes katalógus → célközönség-elágazás → szűrőcsomagok → GYIK → CTA | `ServiceDirectory` |
+| **Országos hálózat** (`#/halozat`) | hero → két egészségközpont → lefedettség → vállalati sáv → GYIK → CTA | `LocationCards`, `CoverageList` |
+| **Egészségpénztárak** (`#/egeszsegpenztarak`) | hero → pénztárak → elszámolás 3 lépésben → mire használható → GYIK → CTA | `FundGrid` |
+| **Árak** (`#/arak`) | hero → kereshető árlista → csomagok → mit tartalmaz az ár → GYIK → CTA | `PriceTable` |
+| **Kapcsolat** (`#/kapcsolat`) | hero → elérhetőség és térkép → űrlap → két telephely → GYIK → CTA | `ContactForm` |
+
+Az interaktív elemek — katalógus-kereső, kategóriaszűrő, árlista-kereső,
+településkereső, galériaszűrő, kapcsolatűrlap — kliensoldalon működnek,
+backend nélkül. Az űrlap küldése csak visszajelzést mutat; a valódi bekötés a
+fejlesztési fázis feladata.
+
+**Adatforrások.** A két egészségközpont adatai, az árkategóriák és az országos
+lefedettség a jelenlegi oldal nyilvános aloldalairól származnak
+(`country-network.php`, `arak`, `contacts.php`). Ahol nem volt közölt érték, a
+tartalom helykitöltő — a `src/content/` mappában egy helyen szerkeszthető:
+`site.ts` (közös adatok), `catalog.ts` (katalógus és árlista),
+`locations.ts` (telephelyek, lefedettség), `services.ts` (vizsgálat-aloldalak).
+
 ## Design rendszer
 
 - **Színsémák.** Minden szakasz `scheme-*` tokeneket használ, a tokenek CSS-változók
@@ -109,6 +142,8 @@ A Relume forrásból átvett fájlokban a következő hibákat javítottam:
   kötötte; most az dönt, hogy az adott blokkhoz gombot vagy linket adtunk.
 - **Pricing 4** címsorba ágyazott címsort renderelt (`<h4>` a `<h1>`-en belül).
 - **Accordion** primitív a `className` propot elnyelte.
+- **Button** primitív `whitespace-nowrap`-je: a hosszabb magyar gombfeliratok
+  emiatt nem tudtak törni.
 - **Layout 647** `aspect-squarerounded-image` elgépelés — hiányzó szóköz két
   osztálynév között, amitől sem az arány, sem a kerekítés nem érvényesült.
 
@@ -118,6 +153,7 @@ A Relume forrásból átvett fájlokban a következő hibákat javítottam:
 npm run build
 node tools/build-artifact.mjs --out foooldal.html --title "Klinika Győr főoldal"
 node tools/build-artifact.mjs --out vizsgalat-aloldal.html --title "Terheléses EKG vizsgálat" --route "#/vizsgalat"
+node tools/build-artifact.mjs --out aloldalak.html --title "Klinika Győr aloldalak" --route "#/oldalak"
 ```
 
 A kapott fájl egyetlen HTML: a CSS, a JS és a képek is bele vannak
