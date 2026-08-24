@@ -46,6 +46,12 @@
     scroll-padding-top: 5rem;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     @apply bg-scheme-background font-sans text-regular text-scheme-text antialiased;
   }

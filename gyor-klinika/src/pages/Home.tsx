@@ -34,6 +34,16 @@ import { Blog40, blogPostButton } from "@/components/sections/Blog40";
 import { Cta25 } from "@/components/sections/Cta25";
 import { Footer14 } from "@/components/sections/Footer14";
 import { MobileActionBar } from "@/components/sections/MobileActionBar";
+import {
+  BOOKING_URL,
+  PHONE_LABEL,
+  PHONE_NUMBER,
+  doctors,
+  footerColumns,
+  footerText,
+  legalLinks,
+  navLinks,
+} from "@/content/site";
 
 /*
   Főoldal — a struktúraterv 18 szakasza, sorrendben.
@@ -45,10 +55,6 @@ import { MobileActionBar } from "@/components/sections/MobileActionBar";
   külön nyelvet és külön CTA-t kap.
 */
 
-const PHONE_LABEL = "+36 96 000 000";
-const PHONE_NUMBER = "+3696000000";
-const BOOKING_URL = "#idopontfoglalas";
-
 const iconClass = "size-12 text-scheme-text";
 
 export const Home = () => {
@@ -56,26 +62,8 @@ export const Home = () => {
     <>
       {/* 1. Header / sticky navigáció */}
       <Navbar1
-        logo={{ url: "#", src: "", alt: "Klinika Győr" }}
-        navLinks={[
-          {
-            title: "Szakrendelések",
-            url: "#szakrendelesek",
-            subMenuLinks: [
-              { title: "Nőgyógyászat és családtervezés", url: "#szakrendelesek" },
-              { title: "Mozgásszervek", url: "#szakrendelesek" },
-              { title: "Szív- és érrendszer", url: "#szakrendelesek" },
-              { title: "Szemészet, fül-orr-gégészet", url: "#szakrendelesek" },
-              { title: "Belgyógyászati szakterületek", url: "#szakrendelesek" },
-              { title: "Mentális egészség és gyermekellátás", url: "#szakrendelesek" },
-            ],
-          },
-          { title: "Szűrőprogramok", url: "#szuroprogramok" },
-          { title: "Vállalatoknak", url: "#vallalatoknak" },
-          { title: "Orvosaink", url: "#orvosaink" },
-          { title: "Árak", url: "#arak" },
-          { title: "Kapcsolat", url: "#kapcsolat" },
-        ]}
+        logo={{ url: "#/", src: "", alt: "Klinika Győr" }}
+        navLinks={navLinks}
         phone={{ label: PHONE_LABEL, number: PHONE_NUMBER }}
         buttons={[{ title: "Időpontfoglalás", size: "sm" }]}
       />
@@ -693,21 +681,13 @@ export const Home = () => {
 
       {/* 18. Footer */}
       <Footer14
-        logo={{ url: "#", alt: "Klinika Győr" }}
+        logo={{ url: "#/", alt: "Klinika Győr" }}
         heading="Kérdése van? Kezdjük egy időponttal."
         description="Hétköznap 7:00 és 19:00 között telefonon is elérhetők vagyunk."
-        buttons={[
-          { title: "Időpontfoglalás" },
-          { title: PHONE_LABEL, variant: "secondary" },
-        ]}
+        buttons={[{ title: "Időpontfoglalás" }, { title: PHONE_LABEL, variant: "secondary" }]}
         columnLinks={footerColumns}
-        legalLinks={[
-          { title: "Adatkezelési tájékoztató", url: "#" },
-          { title: "ÁSZF", url: "#" },
-          { title: "Panaszkezelés", url: "#" },
-          { title: "Impresszum", url: "#" },
-        ]}
-        footerText="© 2026 Klinika Győr. Minden jog fenntartva."
+        legalLinks={legalLinks}
+        footerText={footerText}
       />
 
       {/* Szakaszokon átívelő: mobil cselekvési sáv */}
@@ -723,102 +703,3 @@ export const Home = () => {
   );
 };
 
-const doctorImage = {
-  src: placeholders.avatar,
-  alt: "Orvos portréja",
-};
-
-const doctors = [
-  {
-    image: doctorImage,
-    name: "Dr. Kovács Eszter",
-    jobTitle: "Szülész-nőgyógyász szakorvos",
-    description:
-      "22 év klinikai tapasztalat, terhesgondozás és nőgyógyászati ultrahang. Szakvizsga: 2004, Semmelweis Egyetem.",
-    profileUrl: "#",
-  },
-  {
-    image: doctorImage,
-    name: "Dr. Nagy Balázs",
-    jobTitle: "Ortopéd-traumatológus szakorvos",
-    description:
-      "Sportsérülések és ízületi panaszok konzervatív kezelése. 15 éve dolgozik mozgásszervi rehabilitációval.",
-    profileUrl: "#",
-  },
-  {
-    image: doctorImage,
-    name: "Dr. Tóth Márta",
-    jobTitle: "Kardiológus, belgyógyász szakorvos",
-    description:
-      "Szív- és érrendszeri kivizsgálás, hipertónia-gondozás. Terheléses vizsgálatok és szív-ultrahang.",
-    profileUrl: "#",
-  },
-  {
-    image: doctorImage,
-    name: "Dr. Szabó Péter",
-    jobTitle: "Bőrgyógyász szakorvos",
-    description:
-      "Anyajegyszűrés dermatoszkóppal, gyulladásos bőrbetegségek kezelése. 12 év szakorvosi gyakorlat.",
-    profileUrl: "#",
-  },
-];
-
-const footerColumns = [
-  {
-    title: "Szakrendelések",
-    links: [
-      { title: "Nőgyógyászat", url: "#" },
-      { title: "Ortopédia", url: "#" },
-      { title: "Kardiológia", url: "#" },
-      { title: "Belgyógyászat", url: "#" },
-      { title: "Bőrgyógyászat", url: "#" },
-    ],
-  },
-  {
-    title: "További szakterületek",
-    links: [
-      { title: "Szemészet", url: "#" },
-      { title: "Fül-orr-gégészet", url: "#" },
-      { title: "Urológia", url: "#" },
-      { title: "Endokrinológia", url: "#" },
-      { title: "Gyermekgyógyászat", url: "#" },
-    ],
-  },
-  {
-    title: "Diagnosztika",
-    links: [
-      { title: "Labor", url: "#" },
-      { title: "Ultrahang", url: "#" },
-      { title: "Röntgen", url: "#" },
-      { title: "EKG és Holter", url: "#" },
-      { title: "Gyógytorna", url: "#" },
-    ],
-  },
-  {
-    title: "Szűrőprogramok",
-    links: [
-      { title: "Alap szűrés", url: "#" },
-      { title: "Menedzserszűrés", url: "#" },
-      { title: "Céges szűrés", url: "#" },
-      { title: "Onkológiai szűrés", url: "#" },
-    ],
-  },
-  {
-    title: "Vállalatoknak",
-    links: [
-      { title: "Üzemorvosi ellátás", url: "#" },
-      { title: "Céges csomagok", url: "#" },
-      { title: "Ajánlatkérés", url: "#" },
-    ],
-  },
-  {
-    title: "A klinikáról",
-    links: [
-      { title: "Orvosaink", url: "#orvosaink" },
-      { title: "Árak", url: "#arak" },
-      { title: "Egészségpénztárak", url: "#" },
-      { title: "Egészségmagazin", url: "#" },
-      { title: "Kapcsolat", url: "#kapcsolat" },
-    ],
-  },
-];

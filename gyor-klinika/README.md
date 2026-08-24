@@ -1,6 +1,6 @@
-# Győri magánklinika – főoldal (Relume)
+# Győri magánklinika – főoldal és vizsgálat-aloldal (Relume)
 
-A struktúraterv 18 szakasza megépítve, Relume React komponensekből, saját
+A főoldal-struktúraterv 18 szakasza és a vizsgálat-aloldal sablonjának 14 szakasza megépítve, Relume React komponensekből, saját
 styleguide-dal. React + Vite + Tailwind, a komponensek shadcn-módra a projektbe
 másolva (`src/components/ui`, `src/components/sections`) — nincs
 `@relume_io/relume-ui` futásidejű függőség, minden fájl szerkeszthető.
@@ -12,6 +12,7 @@ npm run build    # éles build a dist/-be
 ```
 
 - Főoldal: `/`
+- Vizsgálat-aloldal (sablon): `/#/vizsgalat`
 - Styleguide: `/#/styleguide`
 
 ## Szakasz → Relume komponens
@@ -38,6 +39,38 @@ npm run build    # éles build a dist/-be
 | 18 | Footer | Footer 14 | hatoszlopos linkrács, SEO-célra is |
 | – | Mobil cselekvési sáv | egyedi | lebegő hívás/foglalás gomb, csak mobilon (`MobileActionBar`) |
 
+## Vizsgálat-aloldal sablon
+
+A 40+ szakrendelés aloldala ugyanaz a sablon, más tartalommal. A logika
+szándékosan más, mint a főoldalé: aki ide érkezik, már tudja, mit keres, ezért
+az út rövidebb — megerősítés → folyamat → bizalom → gyakorlati akadályok
+elhárítása → foglalás.
+
+A sablon a `src/pages/ServicePage.tsx`, a tartalom a `src/content/services.ts`
+`Service` típusa. Új aloldalhoz csak egy új `Service` objektum kell; a
+komponensekhez nem kell hozzányúlni.
+
+| # | Szakasz | Komponens | Megjegyzés |
+|---|---------|-----------|------------|
+| 1 | Header + breadcrumb | Navbar 1 + `Breadcrumb` | a breadcrumb a szakterületi hierarchiát mutatja |
+| 2 | Hero | Header 47 | „egy pillantásra" adatsorral (ár, időtartam, lelet) |
+| 3 | Kinek ajánlott | Layout 647 | pipás lista: minden sor egy önazonosítási pont |
+| 4 | A vizsgálat menete | Timeline 5 | ugyanaz a komponens, mint a főoldalon |
+| 5 | Felkészülés | `Preparation` | „erre lesz szükség" / „ezt kerülje" — elhagyható szakasz |
+| 6 | Szakorvosok | Team 16 | csak az adott szakterület orvosai |
+| 7 | Ár, időtartam, lelet | `KeyFacts` | a bizalomépítés után, a záró CTA előtt |
+| 8 | Egészségpénztár | Logo 5 | erre a konkrét szolgáltatásra vonatkoztatva |
+| 9 | Kapcsolódó vizsgálatok | Layout 376 | kiemelt csomag + kapcsolódó vizsgálatok |
+| 10 | Páciensvélemények | Testimonial 49 | lehetőleg szakterület-specifikus |
+| 11 | GYIK | FAQ 3 | a vizsgálathoz kötött kérdések |
+| 12 | Záró CTA | CTA 25 | a szolgáltatás nevével a gombon |
+| 13 | Kapcsolódó blog | Blog 40 | SEO, nem elsődleges CTA |
+| 14 | Footer | Footer 14 | örökölve a főoldalról |
+
+Szolgáltatástípusonként a sablon két ponton vált hangsúlyt: a `ctaKind: "quote"`
+a vállalati szolgáltatásoknál ajánlatkérésre váltja a foglalást, a `preparation`
+pedig elhagyható ott, ahol nincs teendő a vizsgálat előtt.
+
 ## Design rendszer
 
 - **Színsémák.** Minden szakasz `scheme-*` tokeneket használ, a tokenek CSS-változók
@@ -58,8 +91,9 @@ npm run build    # éles build a dist/-be
   (klinika, orvosok), a partnerlogók helyére a tényleges pénztár- és
   biztosítói logók.
 - **Adatok.** Telefonszám, cím, nyitvatartás, orvosnevek, árak, GYIK-válaszok.
-  A telefonszám a `src/pages/Home.tsx` tetején egy helyen van (`PHONE_LABEL`,
-  `PHONE_NUMBER`).
+  Az oldalak közötti közös adatok (telefonszám, menü, lábléc, orvosok) a
+  `src/content/site.ts`-ben vannak, a vizsgálatok tartalma a
+  `src/content/services.ts`-ben.
 - **Linkek.** Minden `#` horgony helyére a valós aloldalak és a foglalórendszer
   URL-je.
 
@@ -75,14 +109,19 @@ A Relume forrásból átvett fájlokban a következő hibákat javítottam:
   kötötte; most az dönt, hogy az adott blokkhoz gombot vagy linket adtunk.
 - **Pricing 4** címsorba ágyazott címsort renderelt (`<h4>` a `<h1>`-en belül).
 - **Accordion** primitív a `className` propot elnyelte.
+- **Layout 647** `aspect-squarerounded-image` elgépelés — hiányzó szóköz két
+  osztálynév között, amitől sem az arány, sem a kerekítés nem érvényesült.
 
 ## Egyfájlos, megosztható változat
 
 ```
-npm run build && node tools/build-artifact.mjs
+npm run build
+node tools/build-artifact.mjs --out foooldal.html --title "Klinika Győr főoldal"
+node tools/build-artifact.mjs --out vizsgalat-aloldal.html --title "Terheléses EKG vizsgálat" --route "#/vizsgalat"
 ```
 
-A `dist/foooldal.html` egyetlen fájl: a CSS, a JS és a képek is bele vannak
+A kapott fájl egyetlen HTML: a CSS, a JS és a képek is bele vannak
 ágyazva, így hálózat nélkül, dupla kattintással is megnyílik, és megosztható
-oldalként publikálható. A helykitöltő képek ezért `src/assets/`-ből importálva
+oldalként publikálható. A `--route` a kezdő nézetet állítja be, mert a publikált
+oldal URL-jén nincs hash. A helykitöltő képek ezért `src/assets/`-ből importálva
 vannak (data URI-ként ágyazódnak be), nem a `public/` mappából hivatkozva.
