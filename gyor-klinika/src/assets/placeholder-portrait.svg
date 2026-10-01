@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Helykitöltő kép">
+  <rect width="640" height="480" fill="#CFE3E8"/>
+  <path d="M0 480 L200 300 L340 400 L460 300 L640 440 L640 480 Z" fill="#3E93A6" opacity="0.5"/>
+  <circle cx="500" cy="130" r="56" fill="#136B7E" opacity="0.45"/>
+  <text x="320" y="252" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#08343D" opacity="0.65">Helykitöltő kép</text>
+</svg>

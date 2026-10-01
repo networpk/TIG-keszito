@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /*
+    A Relume szekciók a scheme-* tokeneken keresztül színeződnek. A tokenek
+    CSS-változók, ezért egy szekcióra rátett .scheme-* osztály az egész
+    szekciót átszínezi anélkül, hogy a komponenst módosítani kellene.
+  */
+  :root {
+    --scheme-background: 255 255 255;
+    --scheme-foreground: 242 246 247;
+    --scheme-text: 8 52 61;
+    --scheme-border: 196 210 214;
+    --scheme-btn-text: 255 255 255;
+
+    /* A motion/inline style-ok ezeket a kész színeket használják. */
+    --color-scheme-background: rgb(var(--scheme-background));
+    --color-scheme-text: rgb(var(--scheme-text));
+    --color-neutral: #5e7278;
+  }
+
+  .scheme-light {
+    --scheme-background: 242 246 247;
+    --scheme-foreground: 255 255 255;
+    --scheme-text: 8 52 61;
+    --scheme-border: 196 210 214;
+    --color-scheme-background: rgb(var(--scheme-background));
+    --color-scheme-text: rgb(var(--scheme-text));
+  }
+
+  .scheme-brand {
+    --scheme-background: 8 52 61;
+    --scheme-foreground: 14 79 94;
+    --scheme-text: 255 255 255;
+    --scheme-border: 62 147 166;
+    --color-scheme-background: rgb(var(--scheme-background));
+    --color-scheme-text: rgb(var(--scheme-text));
+    --color-neutral: #3e93a6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* A sticky fejléc ne takarja el a szekciók tetejét horgonyra ugráskor. */
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-scheme-background font-sans text-regular text-scheme-text antialiased;
+  }
+
+  /*
+    A magyar összetett szavak („egészségpénztári", „egészségközpont") h1
+    méretben szélesebbek, mint egy 390 pixeles képernyő szövegoszlopa. Az
+    elválasztás — és végső esetben a szótörés — nélkül ezek kilógnak, és
+    vízszintes görgetést okoznak az egész oldalon.
+  */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+}

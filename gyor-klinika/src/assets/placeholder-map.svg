@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700" width="800" height="700" role="img" aria-label="Térkép helye">
+  <rect width="800" height="700" fill="#EDF5F7"/>
+  <g stroke="#CFE3E8" stroke-width="14" fill="none">
+    <path d="M-20 180 H820"/>
+    <path d="M-20 430 H820"/>
+    <path d="M180 -20 V720"/>
+    <path d="M540 -20 V720"/>
+    <path d="M-20 620 H820"/>
+  </g>
+  <g stroke="#3E93A6" stroke-width="10" fill="none" opacity="0.6">
+    <path d="M0 320 C160 300 260 380 400 350 C560 316 660 400 800 380"/>
+  </g>
+  <circle cx="400" cy="350" r="18" fill="#08343D"/>
+  <path d="M400 306 a30 30 0 1 1 -0.1 0 Z" fill="#08343D" opacity="0.18"/>
+  <text x="400" y="410" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#08343D" opacity="0.7">Térkép helye</text>
+</svg>
